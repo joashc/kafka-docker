@@ -45,5 +45,8 @@ if [[ -n "$CUSTOM_INIT_SCRIPT" ]] ; then
   eval $CUSTOM_INIT_SCRIPT
 fi
 
+# Enable topic deletion
+sed -ie 's/#delete.topic.enable/delete.topic.enable/g' $KAFKA_HOME/config/server.properties
+
 create-topics.sh &
 exec $KAFKA_HOME/bin/kafka-server-start.sh $KAFKA_HOME/config/server.properties
